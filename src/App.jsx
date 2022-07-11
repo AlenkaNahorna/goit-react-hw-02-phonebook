@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Notify } from 'notiflix';
 import { nanoid } from 'nanoid';
 import { Box } from 'styles/Box';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
+import { Titles, SubTitles } from 'components/Titles/Titles';
 
 export class App extends Component {
   state = {
@@ -22,14 +24,16 @@ export class App extends Component {
   };
 
   formSubmitHandle = ({ name, number }) => {
-    const contact = {
+    const newContact = {
       id: nanoid(6),
       name,
       number,
     };
-    this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
-    }));
+    this.setState(({ contacts }) =>
+      contacts.find(contact => contact.name === newContact.name)
+        ? Notify.info(`${newContact.name} is already in contacts`)
+        : { contacts: [newContact, ...contacts] }
+    );
   };
 
   changeFilter = evt => {
@@ -51,18 +55,15 @@ export class App extends Component {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        width="60%"
         p="ml"
-        m="10px auto"
-        border="1px solid"
-        borderRadius="normal"
-        backgroundColor="accentColorBlue"
+        m="0px auto"
+        backgroundColor="secondaryColorBlue"
       >
-        <h1>Phonebook</h1>
+        <Titles />
 
         <ContactForm onSubmit={this.formSubmitHandle} />
 
-        <h2>Contacts</h2>
+        <SubTitles />
 
         <Filter value={filter} onFilter={this.changeFilter} />
 

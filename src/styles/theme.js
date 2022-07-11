@@ -1,8 +1,8 @@
 export const theme = {
   colors: {
     primaryColor: '#000000',
-    secondaryColor: '#e8eb51',
-    accentColorBlue: '#c1d1e9',
+    accentColor: '#714df0',
+    secondaryColorBlue: '#c1d1e9',
   },
   space: {
     xs: '0px',
@@ -18,6 +18,7 @@ export const theme = {
     m: '16px',
     l: '20px',
     xl: '32px',
+    xxl: '40px',
   },
   fontWeights: {
     normal: 400,
