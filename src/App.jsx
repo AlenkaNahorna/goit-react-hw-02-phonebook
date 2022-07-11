@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Box } from 'styles/Box';
 import { ContactForm } from 'components/ContactForm/ContactForm';
+import { ContactList } from 'components/ContactList/ContactList';
 
 export class App extends Component {
   state = {
@@ -12,12 +13,18 @@ export class App extends Component {
     ],
     filter: '',
   };
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
 
   formSubmitHandle = data => {
     console.log(data);
   };
 
   render() {
+    const { contacts } = this.state;
     return (
       <Box
         display="flex"
@@ -33,6 +40,7 @@ export class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.formSubmitHandle} />
         <h2>Contacts</h2>
+        <ContactList contacts={contacts} onDeleteContact={this.deleteContact} />
       </Box>
     );
   }
