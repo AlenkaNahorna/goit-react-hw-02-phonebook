@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-// ({ name, number, onClick, onSubmit });
 export class ContactForm extends Component {
   state = {
     name: '',
@@ -17,13 +16,6 @@ export class ContactForm extends Component {
 
     this.props.onSubmit(this.state);
     this.reset();
-
-    // const form = evt.currentTarget;
-    // const login = form.elements.login.value;
-    // const password = form.elements.password.value;
-    // console.log(login, password);
-    //
-    // form.reset();
   };
 
   reset = () => {

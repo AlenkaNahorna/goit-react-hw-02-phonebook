@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 import { Box } from 'styles/Box';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
@@ -19,8 +20,15 @@ export class App extends Component {
     }));
   };
 
-  formSubmitHandle = data => {
-    console.log(data);
+  formSubmitHandle = ({ name, number }) => {
+    const contact = {
+      id: nanoid(6),
+      name,
+      number,
+    };
+    this.setState(prevState => ({
+      contacts: [contact, ...prevState.contacts],
+    }));
   };
 
   render() {
