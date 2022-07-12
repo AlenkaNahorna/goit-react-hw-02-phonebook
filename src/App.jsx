@@ -4,7 +4,7 @@ import { Box } from 'styles/Box';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/ui/Filter/Filter';
-import { MainTitle, SubTitle } from 'components/ui/tutuls';
+import { MainTitle, SubTitle } from 'components/ui/titles';
 
 export class App extends Component {
   state = {
@@ -25,7 +25,7 @@ export class App extends Component {
   handlerSubmit = data => {
     this.setState(({ contacts }) =>
       contacts.find(contact => contact.name === data.name)
-        ? Notify.info(`${data.name} is already in contacts`)
+        ? Notify.warning(`${data.name} is already in contacts`)
         : { contacts: [data, ...contacts] }
     );
   };

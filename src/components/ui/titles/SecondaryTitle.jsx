@@ -1,4 +1,4 @@
-import { SecondaryTitle } from './tutles.styled';
+import { SecondaryTitle } from './titles.styled';
 
 export const SubTitle = () => {
   return <SecondaryTitle>Contacts</SecondaryTitle>;
