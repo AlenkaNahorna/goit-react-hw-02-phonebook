@@ -15,10 +15,10 @@ export const Label = styled.label`
   flex-direction: column;
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.s};
+  margin-bottom: ${p => p.theme.space.l};
 `;
 
 export const Input = styled(Field)`
-  margin-bottom: ${p => p.theme.space.l};
   padding: ${p => p.theme.space.m};
   border-radius: ${p => p.theme.radii.small};
   height: 30px;
@@ -43,4 +43,9 @@ export const Button = styled.button`
     cursor: pointer;
     background-color: ${p => p.theme.colors.accentColor};
   }
+`;
+
+export const ErrorText = styled.p`
+  color: red;
+  font-size: ${p => p.theme.fontSizes.m};
 `;

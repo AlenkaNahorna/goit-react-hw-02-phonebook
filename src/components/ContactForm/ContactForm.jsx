@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { Formik, ErrorMessage } from 'formik';
 import {
   Button,
+  ErrorText,
   FormEl,
   Input,
   Label,
@@ -11,8 +12,17 @@ import {
 
 const schema = yup.object().shape({
   name: yup.string().required(),
-  number: yup.number().min(7).max(9).positive().integer().required(),
+  number: yup.number().min(5).required(),
 });
+
+const FormError = ({ name }) => {
+  return (
+    <ErrorMessage
+      name={name}
+      render={message => <ErrorText>{message}</ErrorText>}
+    />
+  );
+};
 
 export class ContactForm extends Component {
   state = {
@@ -41,12 +51,12 @@ export class ContactForm extends Component {
           <Label>
             Name
             <Input type="text" name="name" />
-            <ErrorMessage name="name" component="div" />
+            <FormError name="name" />
           </Label>
           <Label>
             Number
             <Input type="tel" name="number" />
-            <ErrorMessage name="number" component="div" />
+            <FormError name="number" />
           </Label>
 
           <Button type="submit">Add contact</Button>

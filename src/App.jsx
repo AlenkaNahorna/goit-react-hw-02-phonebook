@@ -3,8 +3,8 @@ import { Notify } from 'notiflix';
 import { Box } from 'styles/Box';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
-import { Filter } from 'components/Filter/Filter';
-import { Titles, SubTitles } from 'components/Titles/Titles';
+import { Filter } from 'components/ui/Filter/Filter';
+import { MainTitle, SubTitle } from 'components/ui/tutuls';
 
 export class App extends Component {
   state = {
@@ -53,11 +53,11 @@ export class App extends Component {
         m="0px auto"
         backgroundColor="secondaryColorBlue"
       >
-        <Titles />
+        <MainTitle />
 
         <ContactForm onSubmit={this.handlerSubmit} />
 
-        <SubTitles />
+        <SubTitle />
 
         <Filter value={filter} onFilter={this.changeFilter} />
 
