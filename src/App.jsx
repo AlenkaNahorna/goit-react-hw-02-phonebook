@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Notify } from 'notiflix';
-import { nanoid } from 'nanoid';
 import { Box } from 'styles/Box';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
@@ -23,16 +22,11 @@ export class App extends Component {
     }));
   };
 
-  formSubmitHandle = ({ name, number }) => {
-    const newContact = {
-      id: nanoid(6),
-      name,
-      number,
-    };
+  handlerSubmit = data => {
     this.setState(({ contacts }) =>
-      contacts.find(contact => contact.name === newContact.name)
-        ? Notify.info(`${newContact.name} is already in contacts`)
-        : { contacts: [newContact, ...contacts] }
+      contacts.find(contact => contact.name === data.name)
+        ? Notify.info(`${data.name} is already in contacts`)
+        : { contacts: [data, ...contacts] }
     );
   };
 
@@ -61,7 +55,7 @@ export class App extends Component {
       >
         <Titles />
 
-        <ContactForm onSubmit={this.formSubmitHandle} />
+        <ContactForm onSubmit={this.handlerSubmit} />
 
         <SubTitles />
 

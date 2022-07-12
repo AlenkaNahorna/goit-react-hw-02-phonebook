@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import * as yup from 'yup';
+import { nanoid } from 'nanoid';
+import { Formik, ErrorMessage } from 'formik';
 import {
   Button,
-  Form,
+  FormEl,
   Input,
   Label,
 } from 'components/ContactForm/ContactForm.styled';
+
+const schema = yup.object().shape({
+  name: yup.string().required(),
+  number: yup.number().min(7).max(9).positive().integer().required(),
+});
 
 export class ContactForm extends Component {
   state = {
@@ -12,52 +20,38 @@ export class ContactForm extends Component {
     number: '',
   };
 
-  handleInputChange = evt => {
-    const { name, value } = evt.currentTarget;
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = evt => {
-    evt.preventDefault();
-
-    this.props.onSubmit(this.state);
-    this.reset();
-  };
-
-  reset = () => {
-    this.setState({ name: '', number: '' });
+  handleSubmit = (values, { resetForm }) => {
+    const newContact = {
+      id: nanoid(6),
+      name: values.name,
+      number: values.number,
+    };
+    this.props.onSubmit(newContact);
+    resetForm();
   };
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Label>
-          Name
-          <Input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleInputChange}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </Label>
-        <Label>
-          Number
-          <Input
-            type="tel"
-            name="number"
-            value={this.state.number}
-            onChange={this.handleInputChange}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </Label>
+      <Formik
+        initialValues={this.state}
+        validationSchema={schema}
+        onSubmit={this.handleSubmit}
+      >
+        <FormEl>
+          <Label>
+            Name
+            <Input type="text" name="name" />
+            <ErrorMessage name="name" component="div" />
+          </Label>
+          <Label>
+            Number
+            <Input type="tel" name="number" />
+            <ErrorMessage name="number" component="div" />
+          </Label>
 
-        <Button type="submit">Add contact</Button>
-      </Form>
+          <Button type="submit">Add contact</Button>
+        </FormEl>
+      </Formik>
     );
   }
 }
