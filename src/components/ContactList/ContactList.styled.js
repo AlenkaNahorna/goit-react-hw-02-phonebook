@@ -17,15 +17,3 @@ export const ContactsListItem = styled.li`
 export const ContactsListText = styled.p`
   margin: 0 ${p => p.theme.space.l};
 `;
-
-export const ContactsButton = styled.button`
-  padding: ${p => p.theme.space.s};
-  font-size: ${p => p.theme.fontSizes.s};
-  border: none;
-  border-radius: ${p => p.theme.radii.small};
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${p => p.theme.colors.accentColor};
-  }
-`;

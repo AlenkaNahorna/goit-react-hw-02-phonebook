@@ -10,14 +10,6 @@ export const FormEl = styled(Form)`
   padding-top: 10px;
 `;
 
-export const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.s};
-  margin-bottom: ${p => p.theme.space.l};
-`;
-
 export const Input = styled(Field)`
   padding: ${p => p.theme.space.m};
   border-radius: ${p => p.theme.radii.small};
@@ -31,17 +23,6 @@ export const Input = styled(Field)`
   &:focus {
     outline: none;
     border: 2px solid ${p => p.theme.colors.accentColor};
-  }
-`;
-export const Button = styled.button`
-  padding: ${p => p.theme.space.ml};
-  font-size: ${p => p.theme.fontSizes.m};
-  border: none;
-  border-radius: ${p => p.theme.radii.small};
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${p => p.theme.colors.accentColor};
   }
 `;
 

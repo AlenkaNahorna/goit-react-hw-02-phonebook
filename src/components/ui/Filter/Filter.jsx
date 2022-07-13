@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Label } from 'components/ContactForm/ContactForm.styled';
+import { Label } from 'components/ui/Label/Label';
 import { FilterInput } from './Filter.styled';
 
 export const Filter = ({ value, onFilter }) => {

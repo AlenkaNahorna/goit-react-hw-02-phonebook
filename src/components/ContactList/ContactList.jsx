@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import {
-  ContactsButton,
   ContactsList,
   ContactsListItem,
   ContactsListText,
 } from './ContactList.styled';
+import { SecondaryButton } from 'components/ui/buttons/SecondaryButton';
 
 export const ContactList = ({ contacts, onDeleteContact }) => {
   return (
@@ -12,9 +12,9 @@ export const ContactList = ({ contacts, onDeleteContact }) => {
       {contacts.map(({ id, name, number }) => (
         <ContactsListItem key={id}>
           {name}: <ContactsListText>{number}</ContactsListText>
-          <ContactsButton onClick={() => onDeleteContact(id)}>
+          <SecondaryButton onClick={() => onDeleteContact(id)}>
             Delate
-          </ContactsButton>
+          </SecondaryButton>
         </ContactsListItem>
       ))}
     </ContactsList>

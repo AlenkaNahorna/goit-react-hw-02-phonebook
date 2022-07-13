@@ -3,12 +3,12 @@ import * as yup from 'yup';
 import { nanoid } from 'nanoid';
 import { Formik, ErrorMessage } from 'formik';
 import {
-  Button,
   ErrorText,
   FormEl,
   Input,
-  Label,
 } from 'components/ContactForm/ContactForm.styled';
+import { Label } from 'components/ui/Label/Label';
+import { PrimaryButton } from 'components/ui/buttons/PrimaryButton';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -59,7 +59,7 @@ export class ContactForm extends Component {
             <FormError name="number" />
           </Label>
 
-          <Button type="submit">Add contact</Button>
+          <PrimaryButton type="submit">Add contact</PrimaryButton>
         </FormEl>
       </Formik>
     );

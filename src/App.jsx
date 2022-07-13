@@ -52,12 +52,14 @@ export class App extends Component {
         p="ml"
         m="0px auto"
         backgroundColor="secondaryColorBlue"
+        width="100%"
+        height="100vh"
       >
-        <MainTitle />
+        <MainTitle title="Phonebook" />
 
         <ContactForm onSubmit={this.handlerSubmit} />
 
-        <SubTitle />
+        <SubTitle title="Contacts" />
 
         <Filter value={filter} onFilter={this.changeFilter} />
 
